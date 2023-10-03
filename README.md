@@ -7,7 +7,7 @@ This tool is designed to generate and execute queries on a dataset of video feat
 
 
 
-## Copyright at PennState MicroDesignLab
+## Developed by PennState MicroDesignLab
 https://mdl.cse.psu.edu/
 
 ## Prerequisites
