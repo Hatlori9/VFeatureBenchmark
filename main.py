@@ -98,6 +98,9 @@ def main(args):
     # Initialize metrics
     total_time = 0
     total_queries_executed = 0
+    successful_queries = 0
+    failed_queries = 0
+    query_times = []
 
     # Execute each query
     for _ in range(args.num_queries):
@@ -109,20 +112,37 @@ def main(args):
         try:
             result = parse_and_execute_query(data, query)
             print("Result:", result)
+            successful_queries += 1
         except ValueError as e:
             print("Error:", e)
+            failed_queries += 1
         end_time = time.time()
 
         # Update metrics
         query_time = end_time - start_time
         total_time += query_time
         total_queries_executed += 1
-        #print(f"Query Time: {query_time:.4f} seconds")
+        query_times.append(query_time)
 
-    # Calculate and print throughput and total latency
+    # Calculate and print additional metrics
     throughput = total_queries_executed / total_time
+    avg_query_time = np.mean(query_times)
+    max_query_time = np.max(query_times)
+    min_query_time = np.min(query_times)
+    p95_query_time = np.percentile(query_times, 95)
+    p99_query_time = np.percentile(query_times, 99)
+    success_rate = (successful_queries / total_queries_executed) * 100
+    failure_rate = (failed_queries / total_queries_executed) * 100
+
     print(f"\nThroughput: {throughput:.2f} queries/second")
     print(f"Total Latency: {total_time:.4f} seconds")
+    print(f"Average Query Time: {avg_query_time:.4f} seconds")
+    print(f"Maximum Query Time: {max_query_time:.4f} seconds")
+    print(f"Minimum Query Time: {min_query_time:.4f} seconds")
+    print(f"95th Percentile Query Time: {p95_query_time:.4f} seconds")
+    print(f"99th Percentile Query Time: {p99_query_time:.4f} seconds")
+    print(f"Query Success Rate: {success_rate:.2f}%")
+    print(f"Query Failure Rate: {failure_rate:.2f}%")
 
 
 if __name__ == "__main__":
