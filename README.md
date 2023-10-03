@@ -24,7 +24,7 @@ pip install numpy
 Navigate to the script's directory and run:
 
 ```bash
-python script_name.py
+python main.py
 ```
 
 ### Customization Options
@@ -32,7 +32,7 @@ python script_name.py
 Customize the script's behavior using various command-line arguments:
 
 ```bash
-python script_name.py --file_path=mydata.csv --num_items=150 --num_queries=10 --op_mode=gaussian --feature_mode=zipfian --seed=42 --op_seed=43 --feature_seed=44
+python main.py --file_path=mydata.csv --num_items=150 --num_queries=10 --op_mode=gaussian --feature_mode=zipfian --seed=42 --op_seed=43 --feature_seed=44
 ```
 
 #### Arguments
@@ -72,13 +72,13 @@ The data (CSV file) can be stored in any accessible location. Use the `--file_pa
 If your data is stored in a different directory, simply provide the full path:
 
 ```bash
-python script_name.py --file_path=/path/to/your/data.csv
+python main.py --file_path=/path/to/your/data.csv
 ```
 
 If your data is stored in a cloud storage or accessible via a URL, ensure your script is capable of handling URL file paths and provide the URL:
 
 ```bash
-python script_name.py --file_path=http://url.to/your/data.csv
+python main.py --file_path=http://url.to/your/data.csv
 ```
 
 **Note**: Handling URLs might require additional libraries or modifications to the `read_processed_data` function to fetch and read data from the web. Ensure your Python environment and script are configured to handle such scenarios.
