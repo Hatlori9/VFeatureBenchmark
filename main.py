@@ -4,7 +4,7 @@ import random
 import re
 import argparse
 import numpy as np
-
+import time
 
 def read_processed_data(file_path, num_items):
     data = []
@@ -95,23 +95,41 @@ def main(args):
     # Load the specified number of items from the CSV file
     data = read_processed_data(args.file_path, args.num_items)
 
+    # Initialize metrics
+    total_time = 0
+    total_queries_executed = 0
+
     # Execute each query
     for _ in range(args.num_queries):
         query = generate_query(data, seed=args.seed, op_seed=args.op_seed, single_op_type=args.single_op_type, single_key=args.single_key, single_value=args.single_value)
         print("Generated query:", query)
 
-        # Parse and execute the query, then display the result
+        # Measure latency
+        start_time = time.time()
         try:
             result = parse_and_execute_query(data, query)
             print("Result:", result)
         except ValueError as e:
             print("Error:", e)
+        end_time = time.time()
+
+        # Update metrics
+        query_time = end_time - start_time
+        total_time += query_time
+        total_queries_executed += 1
+        #print(f"Query Time: {query_time:.4f} seconds")
+
+    # Calculate and print throughput and total latency
+    throughput = total_queries_executed / total_time
+    print(f"\nThroughput: {throughput:.2f} queries/second")
+    print(f"Total Latency: {total_time:.4f} seconds")
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Query Processor')
     parser.add_argument('--file_path', type=str, default='processed_file.csv', help='Path to the CSV file.')
-    parser.add_argument('--num_items', type=int, default=100, help='Number of items to read from the file.')
-    parser.add_argument('--num_queries', type=int, default=5, help='Number of queries.')
+    parser.add_argument('--num_items', type=int, default=5000, help='Number of items to read from the file.')
+    parser.add_argument('--num_queries', type=int, default=10000, help='Number of queries.')
     parser.add_argument('--op_mode', type=str, choices=['random', 'gaussian', 'zipfian', 'single'], default='random', help='Operation type generation mode.')
     parser.add_argument('--feature_mode', type=str, choices=['random', 'gaussian', 'zipfian', 'single'], default='random', help='Feature generation mode.')
     parser.add_argument('--seed', type=int, default=None, help='Seed for key selection.')
