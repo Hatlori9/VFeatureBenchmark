@@ -1,4 +1,4 @@
-# Query Processor Benchmark Tool
+# Video Query Processor Benchmark Tool
 
 
 ## Overview
