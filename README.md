@@ -43,6 +43,7 @@ The "AND" operator is used to retrieve data that satisfies all specified conditi
 ```plaintext
 AND(feature_name=plate,start_time=00:00:00.00)
 This query will retrieve all data rows where the feature_name is "plate" AND start_time is "00:00:00.00".
+```
 
 ### OR Operator
 The "OR" operator is used to retrieve data that satisfies at least one of the specified conditions.
