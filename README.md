@@ -66,7 +66,7 @@ Ensure your CSV file adheres to the following format:
 video_id,start_time,end_time,start_frame,end_frame,feature_name,...
 ```
 
-## Feature Extraction from Videos
+## Feature Extraction from Videos using feature_prepare.py
 
 The feature extraction script utilizes the VGG16 model to extract features from video frames. It supports various video formats and extracts a feature vector for each frame, which is prepared for feature extraction.
 
