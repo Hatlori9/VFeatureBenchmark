@@ -4,17 +4,19 @@
 
 This tool is designed to generate and execute queries on a dataset of video features, providing a benchmark for testing query processing systems in the context of video analysis. It allows for various modes and distributions for both operation types and features, enabling users to test system performance under different scenarios and loads.
 
-##Copyright_at_PennState MicroDesignLab
+## Copyright at PennState MicroDesignLab
 
 ## Prerequisites
 
 - Python 3.x
 - NumPy library
+- (Optional for feature extraction) TensorFlow library
+- (Optional for feature extraction) OpenCV library
 
-Install NumPy using pip:
+Install the necessary libraries using pip:
 
 ```bash
-pip install numpy
+pip install numpy tensorflow opencv-python
 ```
 
 ## Usage
@@ -63,6 +65,52 @@ Ensure your CSV file adheres to the following format:
 ```plaintext
 video_id,start_time,end_time,start_frame,end_frame,feature_name,...
 ```
+
+## Feature Extraction from Videos
+
+The feature extraction script utilizes the VGG16 model to extract features from video frames. It supports various video formats and extracts a feature vector for each frame, which is prepared for feature extraction.
+
+### Example Usage
+Update 'the video_folder_path' and 'csv_file_path' variables in the script:
+
+```python
+video_folder_path = "/path/to/videos"
+csv_file_path = "output_features.csv"
+```
+## Structure of the CSV Output
+
+The CSV file will contain the following columns:
+
+- `video_id`: Identifier of the video.
+- `feature_name`: Identifier of the extracted feature.
+- `start_time`: Start time of the frame (in seconds).
+- `end_time`: End time of the frame (in seconds).
+- `start_frame`: Start frame number.
+- `end_frame`: End frame number.
+  
+### Video Formats
+The script supports various video formats, including but not limited to MP4, MKV, AVI, MOV, and FLV. Ensure the OpenCV library in your Python environment supports the formats you intend to use.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Data Storage Location
 
 The data (CSV file) can be stored in any accessible location. Use the `--file_path` argument to specify the path to your data file when running the script.
