@@ -2,7 +2,7 @@
 
 ## Overview
 
-This tool is designed to generate and execute queries on a dataset, providing a benchmark for testing query processing systems. It allows for various modes and distributions for both operation types and features.
+This tool is designed to generate and execute queries on a dataset of video features, providing a benchmark for testing query processing systems in the context of video analysis. It allows for various modes and distributions for both operation types and features, enabling users to test system performance under different scenarios and loads.Copyright@PennState MicroDesignLab
 
 ## Prerequisites
 
