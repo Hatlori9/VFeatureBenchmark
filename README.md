@@ -30,6 +30,41 @@ currently supported:
 - more later....
 
 
+
+## Query Operators and Features
+
+The script supports various query operators to filter and analyze the video data. Below are examples of how "AND" and "OR" operators work with features:
+
+### AND Operator
+
+The "AND" operator is used to retrieve data that satisfies all specified conditions. 
+
+#### Example Query:
+```plaintext
+AND(feature_name=plate,start_time=00:00:00.00)
+This query will retrieve all data rows where the feature_name is "plate" AND start_time is "00:00:00.00".
+
+### OR Operator
+The "OR" operator is used to retrieve data that satisfies at least one of the specified conditions.
+
+Example Query:
+```plaintext
+OR(feature_name=plate,feature_name=paper)
+```
+This query will retrieve all data rows where the feature_name is either "plate" OR "paper".
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Usage
 
 ### Basic Usage
