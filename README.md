@@ -171,7 +171,7 @@ If your data is stored in a different directory, simply provide the full path:
 python main.py --file_path=/path/to/your/data.csv
 ```
 
-If your data is stored in a cloud storage or accessible via a URL, ensure your script is capable of handling URL file paths and provide the URL:
+If your data is stored in a cloud storage, remote memory or accessible via a URL, ensure your script is capable of handling URL file paths and provide the URL:
 
 ```bash
 python main.py --file_path=http://url.to/your/data.csv
